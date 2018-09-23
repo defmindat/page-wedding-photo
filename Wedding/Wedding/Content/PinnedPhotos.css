@@ -1,0 +1,46 @@
+﻿.pinned-photo-container {
+    display: inline-block;
+    width: 100%;
+    float: left;
+}
+
+.pinned-photo {
+    margin-bottom: 40px;
+    display: inline-block;
+}
+
+.pinned-photo img {
+    width: 100px;
+    height: 100px;
+}
+
+.label-info {
+    background-color: #5bc0de;
+}
+
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.save-annotation {
+    display: inline-block;
+}
+
+.bootstrap-tagsinput  input {
+    width: 200px !important;
+}
+
+.save-annotation img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}

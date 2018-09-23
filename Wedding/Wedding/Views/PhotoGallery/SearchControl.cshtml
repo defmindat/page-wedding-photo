@@ -1,0 +1,116 @@
+﻿@model List<string>
+@{
+    Layout = null;
+}
+
+@using (Ajax.BeginForm("PhotoSet", new AjaxOptions
+{
+    UpdateTargetId = "results",
+    OnSuccess = "initInfinitiveScroll"
+}))
+{
+
+    <div class="search-control">
+        <div class="search-title">
+            WHAT WEDDING IDEAS, PRODUCTS OR VENDORS ARE YOU LOOKING FOR?
+        </div>
+        <input type="text" name="filter" id="filter"/>
+        <div class="search-filter">
+            <input type="submit" value="Find" onclick="changeQueryString($('#filter').val())"/>
+        </div>
+        <div class="quick-search-panel">
+            @foreach (var button in Model)
+            {
+                <a class="quick-search-button"></a>
+                <button class="btn btn-info quick-search-button" onclick="quickSearch('@button')" type="submit">@button</button>
+            }
+        </div>
+    </div>
+}
+<div id="results">
+</div>
+
+<script>
+    $(document).ready(function () {
+        changeQueryString();
+    });
+
+    function changeQueryString(param) {
+        if (history.pushState) {
+            var newurl = window.location.protocol + "//" + window.location.host + '/photosearch';
+            if (param != null && param != '') {
+                var newurl = newurl + '?q=' + param;
+            }
+            window.history.pushState({ path: newurl }, '', newurl);
+        }
+    }
+
+    // search by quick buttons
+    function quickSearch(filterValue) {
+        //reset search params
+        currentPage = 1;
+        $('#currentSource').val('');
+
+        // set filter
+        $('#filter').val(filterValue);
+        // change query string
+        changeQueryString(filterValue);
+
+        return true;
+    }
+
+    // initialize infinitive scrolling after Ajax return success
+    function initInfinitiveScroll() {
+
+        var currentPage = 1;
+        var filter = $("#filter").val();
+        jQuery.ias().destroy();
+
+        var ias = jQuery.ias({
+            container: '#container',
+            item: '.gallery-image',
+            pagination: '#pagination',
+            next: '#pagination a.next',
+            initialize: true
+        });
+
+        ias.extension(new IASSpinnerExtension());
+        ias.extension(new IASNoneLeftExtension({ text: "You reached the end" }));
+        ias.extension(new IASPagingExtension());
+
+        ias.on('load', function (event) {
+            var photoSource = $('#currentSource').val();
+            var queryString = "?filter=" + filter + "&pageNumber=" + currentPage + '&currentSource=' + photoSource;
+
+            event.url = event.url + queryString;
+            event.ajaxOptions.dataType = "html";
+
+            event.ajaxOptions.success = function (data, items) {
+                var currentSourceValue = $(data).find('#currentSource').val();
+                $('#currentSource').val(currentSourceValue);
+            }
+        });
+
+        ias.on('pageChange',
+            function(pageNum, scrollOffset, url) {
+                currentPage = pageNum;
+                scrollOffset = 50;
+            });
+    }
+
+    function saveImage(id, url) {
+        var data = { id: id, url: url };
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SaveImage", "PinnedPhotos")',
+            data: data,
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert('Error while saving');
+            },
+            complete: function (jqXHR, status) {
+                alert('Saved successful');
+            }
+        });
+    }
+</script>

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace DataAccess.Repositories.Interfaces
 {
-    public interface IRepository<Entity> : IDisposable where Entity : class
+    public interface IRepository<Entity> : IDisposable where Entity : class, new()
     {
         Entity CreateNew();
         void Remove(Entity e);

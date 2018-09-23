@@ -5,7 +5,8 @@ namespace Wedding.ViewModels.Gallery
 {
     public class GalleryViewModel
     {
-        public ICollection<AzureGalleryImageDTO> AzureGalleryImages { get; set; }
-        public ICollection<GalleryImageDTO> BingGalleryImages { get; set; }
+        public IEnumerable<GalleryImageDTO> Images { get; set; }
+        public string CurrentPhotoSource { get;set; }
+        public string Filter { get; set; }
     }
 }

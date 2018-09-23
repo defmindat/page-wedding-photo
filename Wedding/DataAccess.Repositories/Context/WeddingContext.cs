@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using DataAccess.Entities.Gallery;
+using DataAccess.Entities.PinnedPhotos;
 
 namespace DataAccess.Repositories.Context
 {
@@ -10,7 +11,8 @@ namespace DataAccess.Repositories.Context
             Database.SetInitializer(new CreateDatabaseIfNotExists<WeddingContext>());
         }
 
-        public DbSet<Photo> Photos { get; set; }
+        public DbSet<Photo> AzurePhotos { get; set; }
+        public DbSet<PinnedPhoto> PinnedPhotos { get; set; }
         public DbSet<PhotoAnnotation> PhotoAnnotations { get; set; }
     }
 }

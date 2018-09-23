@@ -1,5 +1,70 @@
-﻿.gallery-image img {
-    display: inline-block;
+﻿.saved-photos-link {
+    position: absolute;
+    top: 0;
+    right: 200px;
+}
+
+.azure-photo {
+    opacity: 0.6;
+}
+
+.gallery-image {
+    display: inline-block;    
+    float: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.gallery-image img{
     width: 100%;
     height: auto;
+}
+
+.search-control{
+    width: 900px;
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: rgb(244, 243, 232);
+    text-align: center;
+    padding: 20px
+}
+
+.search-filter {
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.search-title + input {
+    max-width: 500px;
+    width: 500px;
+}
+
+.quick-search-button {
+    margin: 0 2px;
+}
+
+img:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.ias-spinner {
+    display: block;
+    width: 100%;
+}
+
+.save-button {
+    display: none;
+}
+
+.gallery-image:hover .save-button {
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    background-color: red;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    right: 15px;
+    cursor: pointer;
 }

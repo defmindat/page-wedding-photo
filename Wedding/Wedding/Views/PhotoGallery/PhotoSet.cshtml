@@ -1,0 +1,26 @@
+﻿@using Business.Models
+@model Wedding.ViewModels.Gallery.GalleryViewModel
+
+@{ 
+    Layout = null;
+}
+
+<div id="container" class="col-xs-12 col-sm-12 col-lg 12">
+    @if (Model != null && Model.Images != null)
+    {
+        foreach (var image in Model.Images)
+        {
+            var className = (image is AzureGalleryImageDTO) ? "azure-photo" : "";
+            <div class="gallery-image col-xs-3 col-sm-3 col-lg-3">
+                <img src='@image.Url' class="@className"/>
+                
+                <a class="save-button" onclick="saveImage('@image.ID', '@image.Url')">SAVE</a>
+            </div>
+        }
+
+        <div id="pagination">
+            <a href="../PhotoGallery/PhotoSet" class="next">next</a>
+        </div>
+        <input id="currentSource" type="hidden" value="@Model.CurrentPhotoSource"/>
+    }
+</div>

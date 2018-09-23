@@ -1,0 +1,11 @@
+﻿@model Wedding.ViewModels.Gallery.GalleryViewModel
+
+@{
+    ViewBag.Title = "Photo Search Page";
+}
+
+<div class="saved-photos-link">
+    @Html.ActionLink("SAVED PHOTOS", "Index", "PinnedPhotos")
+</div>    
+
+@Html.Action("SearchControl", "PhotoGallery")
