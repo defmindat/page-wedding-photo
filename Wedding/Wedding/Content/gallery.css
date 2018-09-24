@@ -1,4 +1,16 @@
-﻿.saved-photos-link {
+﻿body {
+    min-height: 1000px;
+}
+
+#container {
+    column-width: 320px;
+    column-gap: 15px;
+    width: 90%;
+    max-width: 1100px;
+    margin: 50px auto;
+}
+
+.saved-photos-link {
     position: absolute;
     top: 0;
     right: 200px;
@@ -9,18 +21,23 @@
 }
 
 .gallery-image {
-    display: inline-block;    
-    float: left;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    position: relative;
+    background: #fefefe;
+    border: 2px solid #fcfcfc;
+    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+    display: inline-block;
+    margin-bottom: 10px;
+    column-break-inside: avoid;
+    min-width: 300px;
+    min-height: 150px;
 }
 
-.gallery-image img{
+.gallery-image img {
     width: 100%;
     height: auto;
 }
 
-.search-control{
+.search-control {
     width: 900px;
     margin-left: 100px;
     margin-right: 100px;
@@ -44,13 +61,14 @@
     margin: 0 2px;
 }
 
-img:hover {
+.gallery-image:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .ias-spinner {
-    display: block;
-    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
 }
 
 .save-button {
@@ -64,7 +82,13 @@ img:hover {
     background-color: red;
     border-radius: 4px;
     position: absolute;
-    top: 0;
-    right: 15px;
+    top: 10px;
+    right: 20px;
     cursor: pointer;
+    color: white;
+}
+
+.gallery-image:hover a:hover {
+    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+    color: #fff;
 }

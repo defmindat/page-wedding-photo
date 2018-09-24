@@ -20,7 +20,6 @@ namespace Business.Helpers
         public static class GallerySettings
         {
             public static int ImagesPerPage = Convert.ToInt32(ConfigurationManager.AppSettings["GallerySettings.ImagesPerPage"]);
-            public static string PinnedPhotoKey = ConfigurationManager.AppSettings["GallerySettings.PinnedPhotoKey"]; 
         }
 
     }

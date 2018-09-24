@@ -5,15 +5,15 @@
     Layout = null;
 }
 
-<div id="container" class="col-xs-12 col-sm-12 col-lg 12">
+<div id="container">
     @if (Model != null && Model.Images != null)
     {
         foreach (var image in Model.Images)
         {
             var className = (image is AzureGalleryImageDTO) ? "azure-photo" : "";
-            <div class="gallery-image col-xs-3 col-sm-3 col-lg-3">
+            <div class="gallery-image">
                 <img src='@image.Url' class="@className"/>
-                
+
                 <a class="save-button" onclick="saveImage('@image.ID', '@image.Url')">SAVE</a>
             </div>
         }
